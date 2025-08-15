@@ -1,16 +1,13 @@
 workflows:
-  android-debug:
-    name: Android Debug APK
-    max_build_duration: 60
-    environment:
-      flutter: stable
-      android: true
-    cache:
-      cache_paths:
-        - ~/.pub-cache
-        - $FCI_BUILD_DIR/build
-    scripts:
-      - flutter pub get
-      - flutter build apk --debug
-    artifacts:
-      - build/app/outputs/flutter-apk/app-debug.apk
+android-workflow:
+name: Build Android APK
+max_build_duration: 60
+environment:
+flutter: stable
+scripts:
+- name: Get dependencies
+script: flutter pub get
+- name: Build APK
+script: flutter build apk --release
+artifacts:
+- build/app/outputs/flutter-apk/app-release.apk
